@@ -1,5 +1,5 @@
 local inst_Message = api_net.Message.new()
-inst_Message:setType("hello")
+inst_Message:setType(os_constants.MESSAGE_HELLO)
 inst_Message:setNetwork("default")
 inst_Message:setSender(os.getComputerID())
 

@@ -45,7 +45,7 @@ function handleMessage(message)
         os.reboot()
     elseif message:getType() == os_constants.MESSAGE_HELLO then
         print("master said hello!")
-    elseif message:getType() == os_constants.MESSAGE_CONTROL_ANNOUCE then
+    elseif message:getType() == os_constants.MESSAGE_CONTROL_ANNOUNCE then
         if controllerId == -1 or controllerId ~= tonumber(message:getSender()) then
             print("Detected controller: " .. message:getSender())
             hasCreated = false
