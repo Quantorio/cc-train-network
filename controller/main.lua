@@ -118,7 +118,7 @@ function Controller.sendPulse()
     LAST_BROADCAST = os.time()
 
     local inst_Message = api_net.Message.new()
-    inst_Message:setType("control_pulse")
+    inst_Message:setType(os_constants.MESSAGE_CONTROL_ANNOUNCE)
     inst_Message:setNetwork("default")
     inst_Message:setSender(os.getComputerID())
 

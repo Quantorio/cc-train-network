@@ -31,8 +31,10 @@ function handleMessages()
     end
 
     local inst_Message = Message.new()
-    inst_Message:parse(message)
+    if ~inst_Message:parse(message) then return nil end
     --inst_Message:setSender(senderId)
+
+    inst_Table:addNeighbour(Computer.new(message:getSender(), 1, message:getSender()))
 
     if inst_Message:getType() == "query" then
         -- read it
@@ -116,7 +118,7 @@ function StackedMessage:send()
         ]]
 
     local modem = peripheral.wrap("back")
-    modem.transmit(tonumber(self.route), tonumber(self.sender), self.toSend) -- this is for compatibility reasons
+    modem.transmit(tonumber(self.route), tonumber(self.sender), os_constants.prefix(self.toSend)) -- this is for compatibility reasons
     self.time = os.time()
 end
 function StackedMessage:getID()
@@ -318,7 +320,7 @@ function Message:sendUnreliable()
             To avoid this, the modem API is accessed directly
         ]]
         local modem = peripheral.wrap("back")
-        modem.transmit(tonumber(route), tonumber(self.sender), toSend) -- this is for compatibility reasons
+        modem.transmit(tonumber(route), tonumber(self.sender), os_constants.prefix(self.toSend)) -- this is for compatibility reasons
 
         return true
     else
@@ -336,7 +338,7 @@ function Message:broadcast()
         toSend = toSend .. self.payload[i] .. Message.sep
     end
 
-    rednet.broadcast(toSend)
+    rednet.broadcast(os_constants.prefix(self.toSend))
     return true
 end
 function Message:broadcastAll()
@@ -388,6 +390,9 @@ function Message:setID(id)
     self.id = id
 end
 function Message:parse(input)
+    if ~os_constants.isTrainNet(input) then return false end
+    input = os_constants.remove_prefix(input)
+
     local array = {}
     array = api_os.splitString(input)
 
@@ -401,6 +406,7 @@ function Message:parse(input)
     for i = 6, table.getn(array) do
         self:addPayload(array[i])
     end
+    return true
 end
 
 
