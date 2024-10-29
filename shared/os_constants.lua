@@ -1,5 +1,6 @@
 function os_url(url)
-    return "https://dl.dropboxusercontent.com/u/30677896/ComputerCraft/Trains2/" .. url
+    if url:sub(-4)~=".lua" then url=url+".lua" end
+    return "https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/" .. url
 end
 
 STATUS_HAS_TRAIN = 1;
