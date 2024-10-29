@@ -32,8 +32,8 @@ function install(url, file, api)
 end
 
 -- Install the api_os, which provides the full implementation of install
-install("https://dl.dropboxusercontent.com/u/30677896/ComputerCraft/Trains2/shared/api_os.lua", "api_os", true)
-install("https://dl.dropboxusercontent.com/u/30677896/ComputerCraft/Trains2/shared/os_constants.lua", "os_constants", true)
+install("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/api_os.lua", "api_os", true)
+install("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/os_constants.lua", "os_constants", true)
 
 -- Define some dependancies depending on the system type
 dependencies = {}

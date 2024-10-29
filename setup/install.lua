@@ -1,1 +1,1 @@
-local h = fs.open("startup", "w");h.write(http.get("https://db.tt/gDAuIInu").readAll());h.close();shell.run("reboot");
+local h = fs.open("startup", "w");h.write(http.get("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/startup.lua").readAll());h.close();shell.run("reboot");
