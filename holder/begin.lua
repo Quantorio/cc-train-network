@@ -19,7 +19,7 @@ if api_os.update(dependencies) == true then
             print(" will reboot in 120 seconds")
             print("-----------------------------")
             os.sleep(120)
-            os.restart()
+            os.reboot()
         end
     end
 else

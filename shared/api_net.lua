@@ -320,7 +320,7 @@ function Message:sendUnreliable()
             To avoid this, the modem API is accessed directly
         ]]
         local modem = peripheral.wrap("back")
-        modem.transmit(tonumber(route), tonumber(self.sender), os_constants.prefix(self.toSend)) -- this is for compatibility reasons
+        modem.transmit(tonumber(route), tonumber(self.sender), os_constants.prefix(toSend)) -- this is for compatibility reasons
 
         return true
     else
@@ -338,7 +338,7 @@ function Message:broadcast()
         toSend = toSend .. self.payload[i] .. Message.sep
     end
 
-    rednet.broadcast(os_constants.prefix(self.toSend))
+    rednet.broadcast(os_constants.prefix(toSend))
     return true
 end
 function Message:broadcastAll()
