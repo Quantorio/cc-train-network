@@ -31,6 +31,8 @@ function install(url, file, api)
     return true
 end
 
+print("Version: 0.1")
+
 -- Install the api_os, which provides the full implementation of install
 install("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/api_os.lua", "api_os", true)
 install("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/os_constants.lua", "os_constants", true)
