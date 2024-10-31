@@ -1,5 +1,8 @@
 function os_url(url)
-    if url:sub(-4)~=".lua" then url=url+".lua" end
+    if url:sub(-4)~=".lua" then url=url..".lua" end
+	if fs.exists("proxy") then
+	    return fs.open("proxy","r").readAll() .. url
+    end
     return "https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/" .. url
 end
 
@@ -14,7 +17,7 @@ MESSAGE_HELLO = "hello"
 MESSAGE_CONTROL_ANNOUNCE = "control_pulse"
 
 function prefix(message)
-    return MESSAGE_PREFIX + message
+    return MESSAGE_PREFIX .. message
 end
 function isTrainNet(message)
     return message:sub(#MESSAGE_PREFIX) == MESSAGE_PREFIX

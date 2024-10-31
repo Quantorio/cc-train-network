@@ -33,9 +33,17 @@ end
 
 print("Version: 0.1")
 
+function os_url(url)
+    if url:sub(-4)~=".lua" then url=url..".lua" end
+	if fs.exists("proxy") then
+	    return fs.open("proxy","r").readAll() .. url
+    end
+    return "https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/" .. url
+end
+
 -- Install the api_os, which provides the full implementation of install
-install("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/api_os.lua", "api_os", true)
-install("https://github.com/Quantorio/cc-train-network/raw/refs/heads/master/shared/os_constants.lua", "os_constants", true)
+install(os_url("shared/api_os.lua"), "api_os", true)
+install(os_url("shared/os_constants.lua"), "os_constants", true)
 
 -- Define some dependancies depending on the system type
 dependencies = {}
