@@ -31,7 +31,7 @@ function handleMessages()
     end
 
     local inst_Message = Message.new()
-    if ~inst_Message:parse(message) then return nil end
+    if not inst_Message:parse(message) then return nil end
     --inst_Message:setSender(senderId)
 
     inst_Table:addNeighbour(Computer.new(message:getSender(), 1, message:getSender()))
@@ -390,7 +390,7 @@ function Message:setID(id)
     self.id = id
 end
 function Message:parse(input)
-    if ~os_constants.isTrainNet(input) then return false end
+    if not os_constants.isTrainNet(input) then return false end
     input = os_constants.remove_prefix(input)
 
     local array = {}
